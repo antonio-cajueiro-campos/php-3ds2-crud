@@ -1,17 +1,17 @@
 <?php
 class System {
-	private $db;
+	protected $db;
 
 	public function __construct($db) {
 		$this->db = $db;
 	}
 
-	public function atualizarMediaSalarial($categoria) {
+	protected function atualizarMediaSalarial($categoria) {
 		$db = $this->db;
 		$sql = "SELECT vl_salario FROM tb_usuario WHERE cd_categoria = '$categoria'";
 
 		$soma = 0;
-		$query=$db->query($sql);
+		$query = $db->query($sql);
 		if ($query->num_rows != 0) {
 			foreach ($query as $registro) {
 				$soma += $registro['vl_salario'];

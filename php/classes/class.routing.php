@@ -10,12 +10,11 @@ class Routing {
 		}
 	}
 
-	public function setRouting($p = "home") {
-		$router = "$p/index.php";
-		if (file_exists("view/".$router) && file_exists("controller/".$router) ) {
+	public function setRouting($router = "home") {
+		if (file_exists("view/".$router."/index.php") && file_exists("controller/".$router."/index.php") ) {
 			return $router;
 		} else {
-			return "../php/errors/404.php";
+			return "../php/errors/404/";
 		}
 	}
 
@@ -23,7 +22,7 @@ class Routing {
 		switch ($page) {
 			case 'home':
 				switch ($set) {
-					case 'name': return "Página inicial";
+					case 'name': return "Inicio";
 					case 'desc': return "Venha conhecer a nossa homepage";
 					case 'abst': return "Come to brazil";
 					case 'keyw': return "página inicial, home, media, profissional, ti, salario";
