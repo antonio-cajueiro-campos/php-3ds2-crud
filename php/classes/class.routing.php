@@ -2,14 +2,6 @@
 
 class Routing {
 
-	public function routerView($path) {
-		switch ($path) {
-			case 'consulta/index.php': return 'consulta';
-			case 'home/index.php': return 'home';
-			default: return 'home';
-		}
-	}
-
 	public function setRouting($router = "home") {
 		if (file_exists("view/".$router."/index.php") && file_exists("controller/".$router."/index.php") ) {
 			return $router;
@@ -28,12 +20,28 @@ class Routing {
 					case 'keyw': return "página inicial, home, media, profissional, ti, salario";
 				}
 			break;
-			case 'consulta':
+			case 'consultar':
 				switch ($set) {
-					case 'name': return "Consulta";
+					case 'name': return "Consultar";
 					case 'desc': return "Consulta de profissionais";
-					case 'abst': return "";
-					case 'keyw': return "consulta, profissionais, media";
+					case 'abst': return "Come to brazil";
+					case 'keyw': return "consultar, profissionais, media";
+				}
+			break;
+			case 'cadastrar':
+				switch ($set) {
+					case 'name': return "Cadastrar";
+					case 'desc': return "Cadastrar de profissionais";
+					case 'abst': return "Come to brazil";
+					case 'keyw': return "cadastrar, profissionais, media";
+				}
+			break;
+			case 'atualizar':
+				switch ($set) {
+					case 'name': return "Atualizar";
+					case 'desc': return "Atualizar de profissionais";
+					case 'abst': return "Come to brazil";
+					case 'keyw': return "atualizar, profissionais, media";
 				}
 			break;
 			default:

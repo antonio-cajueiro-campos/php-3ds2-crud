@@ -8,10 +8,26 @@ $system = new System($mysqli);
 $routing = new Routing();
 
 $router = $routing->setRouting(isset($_GET['p']) || "" ? $_GET['p'] : 'home');
-$page = $routing->routerView($router);
-$page_name = $routing->setPage('name', $page);
-$page_desc = $routing->setPage('desc', $page);
-$page_keywords = $routing->setPage('keyw', $page);
-$page_abstract = $routing->setPage('abst', $page);
+
+$page_name = $routing->setPage('name', $router);
+$page_desc = $routing->setPage('desc', $router);
+$page_keywords = $routing->setPage('keyw', $router);
+$page_abstract = $routing->setPage('abst', $router);
+
+$navs = [
+	'home', 'consultar', 'cadastrar', 'atualizar'
+];
+
+$navList = "";
+
+foreach ($navs as $nav) {
+	$activeStyles = 'active';
+	if ($router != $nav) $activeStyles = "";
+	$template = "
+		<li class='nav-item $activeStyles'>
+			<a class='nav-link' href='?p=$nav'>".ucwords($nav)."</a>
+		</li>";
+	$navList .= $template;
+}
 
 ?>

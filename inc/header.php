@@ -30,15 +30,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="?p=home">Home </a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="?p=consulta">Consulta <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="?p=cadastrar">Cadastrar  <span class="sr-only">(current)</span></a>
-						</li>
+						<?= $navList ?>
 					</ul>
 					<!-- <form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

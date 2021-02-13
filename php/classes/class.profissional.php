@@ -34,10 +34,42 @@ class Profissional extends System {
 	public function getAllCategories() {
 		$db = $this->db;
 
-		$sql = "SELECT nm_categoria FROM tb_categoria";
+		$sql = "SELECT * FROM tb_categoria ORDER BY nm_categoria";
+		if ($query = $db->query($sql)) {
+			return $query;
+		} else {
+			return false;
+		}
+	}
+
+	public function getCategorie($id, $type = null) {
+		$db = $this->db;
+
+		switch ($type) {
+			case 'name': $value = "nm_categoria"; break;
+			case 'media': $value = "vl_media_salarial"; break;
+		}
+		$sql = "SELECT $value FROM tb_categoria WHERE cd_categoria = '$id'";
+
 		$query = $db->query($sql);
 
-		return $query;
+		$row = $query->fetch_array(MYSQLI_ASSOC);
+
+		$result = $row[$value];
+
+		return $result;
+
+	}
+
+	public function getAllProInCategories($categoryId) {
+		$db = $this->db;
+
+		$sql = "SELECT * FROM tb_usuario WHERE cd_categoria='$categoryId' ORDER BY nm_profissional";
+		if ($query = $db->query($sql)) {
+			return $query;
+		} else {
+			return false;
+		}
 	}
 
 	public function apagarRegistro($cpf, $categoria) {
