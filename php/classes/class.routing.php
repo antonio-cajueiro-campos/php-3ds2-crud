@@ -1,6 +1,7 @@
 <?php
 class Routing {
 
+	// método para verificar se a rota existe e retornar erro 404 caso não exista
 	public function setRouting($router) {
 		if (file_exists("view/".$router."/index.php") && file_exists("controller/".$router."/index.php"))
 			return $router;
@@ -8,6 +9,7 @@ class Routing {
 			return "../php/errors/404/";
 	}
 
+	// método para setar os meta de cada página
 	public function setPage($set, $page) {
 		switch ($page) {
 			case 'home':

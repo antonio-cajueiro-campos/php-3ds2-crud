@@ -11,18 +11,42 @@ async function removeProfissional(id) {
 			const data = await fetchServer("delete-profissional", {
 				profId: id
 			})
+            console.log(data);
 			if (data == "ok") {
-				Swal.fire('Profissional excluido com sucesso', '', 'success')
-				.then((e) => {
-					location.reload();
-				});
+                showAlert(4);
 			} else {
-				Swal.fire('Falha ao excluir profissional', '', 'warning')
+				showAlert(5);
 			}
 		}		
 	})
 }
 
+function redirect(url) {
+    location.href = url;
+}
+
+function showAlert(id) {
+    let msg, icon;
+    switch (id) {
+        case 0: msg = "Profissional adicionado com sucesso"; icon = "success"; break;
+        case 1: msg = "CPF já cadastrado"; icon = "error"; break;
+        case 2: msg = "Falha ao adicionar profissional"; icon = "error"; break;
+        case 3: msg = ""; icon = "success"; break;
+        case 4: msg = "Profissional excluido com sucesso"; icon = "success"; break;
+        case 5: msg = "Falha ao excluir profissional"; icon = "error"; break;
+        case 6: msg = "Perfil atualizado com sucesso!"; icon = "success"; break;
+        case 7: msg = "Falha ao atualizar perfil"; icon = "error"; break;
+        default: msg = "Erro desconhecido"; icon = "error"; break;
+    }
+    if (id == 4) {
+        Swal.fire(msg, '', icon)
+        .then((e) => {
+            location.reload();
+        });
+    } else {
+        Swal.fire(msg, '', icon);
+    }
+}
 
 // (script filename(PHP), parâmetros(objeto), method(GET/POST))
 async function fetchServer(script = null, param = {}, method = "POST", timeout = 10) {

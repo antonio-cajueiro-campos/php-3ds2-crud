@@ -5,7 +5,7 @@ include_once 'php/classes/class.profissional.php';
 $profissional = new Profissional($mysqli);
 
 $categories = $profissional->getAllCategories();
-$printCategories = "<option selected value=''>Escolha a sua categoria</option>";
+$printCategories = "<option selected value='0'>Escolha a sua categoria</option>";
 
 foreach ($categories as $category) {
 	$cat = $category['nm_categoria'];
@@ -17,12 +17,28 @@ foreach ($categories as $category) {
 
 if (isset($_POST['cadastrar'])) {
 
-	echo $nome = $_POST['nome'];
-	echo $cpf = $_POST['cpf'];
-	echo $categoria = $_POST['categoria'];
-	echo $salario = $_POST['salario'];
-	
-	var_dump($profissional->addProfissional($nome, $cpf, $salario, $categoria));
+	$nome = $_POST['nome'];
+	$cpf = $_POST['cpf'];
+	$categoria = $_POST['categoria'];
+	$salario = $_POST['salario'];
+
+	$cpf = str_replace(".", "", $cpf);
+	$cpf = str_replace("-", "", $cpf);
+
+	$salario = str_replace("R$", "", $salario);
+	$salario = str_replace(",", "#", $salario);
+	$salario = str_replace(".", "", $salario);
+	$salario = str_replace("#", ".", $salario);
+
+	if (!$profissional->consultarProfissional($cpf, 'valid')) {
+		if ($profissional->addProfissional($nome, $cpf, $salario, $categoria)) {
+			echo "<script>showAlert(0)</script>";
+		} else {
+			echo "<script>showAlert(2)</script>";			
+		}
+	} else {
+		echo "<script>showAlert(1)</script>";
+	}
 }
 
 ?>

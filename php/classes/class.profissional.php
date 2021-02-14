@@ -3,7 +3,7 @@ include_once 'class.system.php';
 
 class Profissional extends System {
 
-
+	// método para adicionar um profissional ao sistema
 	public function addProfissional($nome, $cpf, $salario, $categoria) {
 		$db = $this->db;
 
@@ -14,9 +14,10 @@ class Profissional extends System {
 			if ($res) return true;
 			return false;
 		}
-		return false;		
+		return false;
 	}
 
+	// método para remover um profissional do sistema
 	public function removeProfissional($cpf, $categoria) {
 		$db = $this->db;
 
@@ -30,15 +31,21 @@ class Profissional extends System {
 		return false;
 	}
 
-	public function editarProfissional($nome, $cpf, $salario, $categoria) {
+	// método para atualizar as informações de um profissional
+	public function updateProfissional($nome, $cpf, $salario, $categoria) {
 		$db = $this->db;
 
+		$sql = "UPDATE tb_usuario SET cd_cpf = '$cpf', nm_profissional = '$nome', vl_salario = '$salario', cd_categoria = '$categoria' WHERE cd_cpf = '$cpf'";
 
-		$res = $this->atualizarMediaCategoria($categoria);
-		if ($res) return true;
+		if ($db->query($sql)) {
+			$res = $this->atualizarMediaCategoria($categoria);
+			if ($res) return true;
+			return false;
+		}
 		return false;
 	}
 
+	// método para consultar informações do profissional
 	public function consultarProfissional($cpf, $type) {
 		$db = $this->db;
 
@@ -46,10 +53,18 @@ class Profissional extends System {
 			case 'categoria': $value = "cd_categoria"; break;
 			case 'nome': $value = "nm_profissional"; break;
 			case 'salario': $value = "vl_salario"; break;
+			case 'valid': $value = "cd_cpf"; break;
 		}
 		$sql = "SELECT $value FROM tb_usuario WHERE cd_cpf = '$cpf'";
 
 		$query = $db->query($sql);
+
+		if ($type == "valid") {
+			if ($query->num_rows > 0)
+			return true;
+			else
+			return false;
+		}
 
 		$row = $query->fetch_array(MYSQLI_ASSOC);
 
@@ -58,6 +73,7 @@ class Profissional extends System {
 		return $result;
 	}
 
+	// método para obter todas as categorias como mysqli object
 	public function getAllCategories() {
 		$db = $this->db;
 
@@ -69,6 +85,7 @@ class Profissional extends System {
 		}
 	}
 
+	// método para obter certas informações de categorias selecionadas
 	public function getCategorie($id, $type = null) {
 		$db = $this->db;
 
@@ -87,6 +104,7 @@ class Profissional extends System {
 		return $result;
 	}
 
+	// método para obter todos os profissionais de determinada categoria
 	public function getAllProInCategories($categoryId) {
 		$db = $this->db;
 

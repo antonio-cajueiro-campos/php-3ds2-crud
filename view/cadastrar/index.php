@@ -2,22 +2,22 @@
 <form method="POST">
   <div class="form-row">
     <div class="col-md-12 mb-3">
-      <label for="validationServer01">Nome do profissional</label>
-      <input type="text" class="form-control" name="nome" required>
+      <label for="nome">Nome do profissional</label>
+      <input type="text" class="form-control" id="nome" name="nome" required>
     </div>
   </div>
   <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="cpf">CPF</label>
+      <input type="text" class="form-control" id="cpf" name="cpf" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="salario">Salário</label>
+      <input type="text" class="form-control" id="salario" name="salario" required>
+    </div>
     <div class="col-md-6 mb-3">
-      <label>CPF</label>
-      <input type="text" class="form-control" name="cpf" maxlength="11" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label>Salário</label>
-      <input type="text" class="form-control" name="salario" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label>Categoria</label>
-      <select class="custom-select" name="categoria" required>
+      <label for="categoria">Categoria</label>
+      <select class="custom-select" id="categoria" name="categoria" required>
         <?= $printCategories; ?>
       </select>
     </div>    

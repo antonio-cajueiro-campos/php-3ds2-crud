@@ -22,7 +22,7 @@
 
 <?php if (isset($_GET['category'])) { ?>
 	<div class="row">
-		<div class="col text-center"><?=$categoryName?> - Media: <?=$categoryMedia?></div>
+		<div class="col text-center"><?=$categoryName?> - Média R$ <?=$categoryMedia?></div>
 	</div>
 	<?php if ($printList != "") { ?>
 		<div class="row category-header">
