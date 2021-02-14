@@ -2,10 +2,10 @@
 async function removeProfissional(id) {
 	await Swal.fire({
 		title: 'Tem certeza que deseja excluir este profissional?',
-		showDenyButton: true,
+		showConfirmButton: true,
 		showCancelButton: true,
 		confirmButtonText: `Excluir`,
-		denyButtonText: `Cancelar`,
+		cancelButtonText: `Cancelar`,
 	}).then(async (result) => {
 		if (result.isConfirmed) {
 			const data = await fetchServer("delete-profissional", {
@@ -25,6 +25,26 @@ function redirect(url) {
     location.href = url;
 }
 
+function redirectMsg(url, id) {
+    let data = `showAlert(${id});`;
+    localStorage.setItem('msgHtml', data);
+    location.href = url;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function showAfterMsg() {
+    if (localStorage.getItem('msgHtml') !== null) {
+        let data = localStorage.getItem('msgHtml');
+        data = "<script type='text/javascript'>"+data+"</script>";
+        $('.footer').html(data);
+        await sleep(100);
+        localStorage.removeItem('msgHtml');
+    }  
+}
+
 function showAlert(id) {
     let msg, icon;
     switch (id) {
@@ -41,7 +61,7 @@ function showAlert(id) {
     if (id == 4) {
         Swal.fire(msg, '', icon)
         .then((e) => {
-            location.reload();
+            location.reload(true);
         });
     } else {
         Swal.fire(msg, '', icon);

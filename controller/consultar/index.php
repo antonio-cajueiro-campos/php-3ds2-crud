@@ -18,7 +18,7 @@ foreach ($categories as $category) {
 	$printCategories .= $templateSelect;
 }
 
-if (isset($_GET['category'])) {
+if (isset($_GET['category']) && $_GET['category'] != "") {
 	$categoryId = $_GET['category'];
 	$categoryName = $profissional->getCategorie($categoryId, 'name');
 	$categoryMedia = $profissional->getCategorie($categoryId, 'media');

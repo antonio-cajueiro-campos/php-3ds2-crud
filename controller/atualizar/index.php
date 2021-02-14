@@ -31,23 +31,35 @@ if (isset($_GET['id']) && $_GET['id'] != "") {
 
 if (isset($_POST['atualizar'])) {
 	
-	$nome = $_POST['nome'];
-	$salario = $_POST['salario'];
-	$cpf = $_POST['cpf'];
-	$categoria = $_POST['categoria'];
+	$nomeP = $_POST['nome'];
+	$salarioP = $_POST['salario'];
+	$cpfP = $_POST['cpf'];
+	$categoriaP = $_POST['categoria'];
 
-	$cpf = str_replace(".", "", $cpf);
-	$cpf = str_replace("-", "", $cpf);
+	$cpfP = str_replace(".", "", $cpfP);
+	$cpfP = str_replace("-", "", $cpfP);
 
-	$salario = str_replace("R$", "", $salario);
-	$salario = str_replace(",", "#", $salario);
-	$salario = str_replace(".", "", $salario);
-	$salario = str_replace("#", ".", $salario);
-
-	if ($profissional->updateProfissional($nome, $cpf, $salario, $categoria)) {
-		echo "<script>showAlert(6);</script>";
+	$salarioP = str_replace("R$", "", $salarioP);
+	$salarioP = str_replace(",", "#", $salarioP);
+	$salarioP = str_replace(".", "", $salarioP);
+	$salarioP = str_replace("#", ".", $salarioP);
+	
+	if ($cpf != $cpfP) {
+		if (!$profissional->consultarProfissional($cpfP, 'valid')) {
+			if ($profissional->updateProfissional($nomeP, $cpf, $cpfP, $salarioP, $categoriaP)) {
+				echo "<script>redirectMsg('?p=atualizar&id=$cpfP', 6);</script>";
+			} else {
+				echo "<script>showAlert(7);</script>";
+			}
+		} else {
+			echo "<script>showAlert(1);</script>";
+		}
 	} else {
-		echo "<script>showAlert(7);</script>";
+		if ($profissional->updateProfissional($nomeP, $cpf, $cpfP, $salarioP, $categoriaP)) {
+			echo "<script>redirectMsg('?p=atualizar&id=$cpfP', 6);</script>";
+		} else {
+			echo "<script>showAlert(7);</script>";
+		}
 	}
 }
 ?>

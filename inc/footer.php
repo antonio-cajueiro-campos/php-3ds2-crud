@@ -2,6 +2,12 @@
 	</div>
 	<footer class="footer">
 		<div class="container c-footer">
+			<div class="footer-social-media">
+				<img src="images/facebook.png" alt="facebook icon">
+				<img src="images/twitter.png" alt="twitter icon">
+				<img src="images/instagram.png" alt="instagram icon">
+				<img src="images/youtube.png" alt="youtube icon">
+			</div>
 			<div class="footer-info"><p>Antonio & Tiago™ 2021 ℗ All rights reserved</p></div>
 		</div>
 	</footer>
@@ -22,6 +28,8 @@
 			document.getElementById('categoria').value = <?= @!isset($categoria) ? 0 : $categoria ;?>;
 			$('#categoria').change();
 		}
+
+		showAfterMsg();
     });
 </script>
 </body>

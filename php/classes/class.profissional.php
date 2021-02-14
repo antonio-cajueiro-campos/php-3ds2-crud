@@ -32,10 +32,10 @@ class Profissional extends System {
 	}
 
 	// método para atualizar as informações de um profissional
-	public function updateProfissional($nome, $cpf, $salario, $categoria) {
+	public function updateProfissional($nome, $cpfOld, $cpfNew, $salario, $categoria) {
 		$db = $this->db;
 
-		$sql = "UPDATE tb_usuario SET cd_cpf = '$cpf', nm_profissional = '$nome', vl_salario = '$salario', cd_categoria = '$categoria' WHERE cd_cpf = '$cpf'";
+		$sql = "UPDATE tb_usuario SET cd_cpf = '$cpfNew', nm_profissional = '$nome', vl_salario = '$salario', cd_categoria = '$categoria' WHERE cd_cpf = '$cpfOld'";
 
 		if ($db->query($sql)) {
 			$res = $this->atualizarMediaCategoria($categoria);

@@ -20,7 +20,7 @@
 	</div>
 </div>
 
-<?php if (isset($_GET['category'])) { ?>
+<?php if (isset($_GET['category']) && $_GET['category'] != "") { ?>
 	<div class="row">
 		<div class="col text-center"><?=$categoryName?> - Média R$ <?=$categoryMedia?></div>
 	</div>
