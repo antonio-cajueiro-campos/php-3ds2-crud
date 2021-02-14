@@ -68,8 +68,8 @@ a {
 }
 
 .footer-social-media {
-	height: 45px;
-	width: 200px;
+	height: 35px;
+	width: 155px;
 	float: right;
 	margin-top: 70px;
 }
@@ -90,4 +90,18 @@ a {
 	font-size: 13px;
 	margin: 0;
 	bottom: 0;
+}
+
+@media (max-width:600px) {
+	.footer-info {
+		transform: translate(-50%);
+		left: 50%;		
+	}
+
+	.footer-social-media {
+		position: absolute;
+		clear: both;
+		left: 50%;
+		transform: translate(-50%);
+	}
 }

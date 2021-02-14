@@ -46,7 +46,7 @@ if (isset($_POST['atualizar'])) {
 	
 	if ($cpf != $cpfP) {
 		if (!$profissional->consultarProfissional($cpfP, 'valid')) {
-			if ($profissional->updateProfissional($nomeP, $cpf, $cpfP, $salarioP, $categoriaP)) {
+			if ($profissional->updateProfissional($nomeP, $cpf, $cpfP, $salarioP, $categoria, $categoriaP)) {
 				echo "<script>redirectMsg('?p=atualizar&id=$cpfP', 6);</script>";
 			} else {
 				echo "<script>showAlert(7);</script>";
@@ -55,7 +55,7 @@ if (isset($_POST['atualizar'])) {
 			echo "<script>showAlert(1);</script>";
 		}
 	} else {
-		if ($profissional->updateProfissional($nomeP, $cpf, $cpfP, $salarioP, $categoriaP)) {
+		if ($profissional->updateProfissional($nomeP, $cpf, $cpfP, $salarioP, $categoria, $categoriaP)) {
 			echo "<script>redirectMsg('?p=atualizar&id=$cpfP', 6);</script>";
 		} else {
 			echo "<script>showAlert(7);</script>";
