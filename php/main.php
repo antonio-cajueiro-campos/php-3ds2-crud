@@ -15,7 +15,7 @@ $page_keywords = $routing->setPage('keyw', $router);
 $page_abstract = $routing->setPage('abst', $router);
 
 $navs = [
-	'home', 'consultar', 'cadastrar', 'atualizar'
+	'home', 'consultar', 'cadastrar'
 ];
 
 $navList = "";

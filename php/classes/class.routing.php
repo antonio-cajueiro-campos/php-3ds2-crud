@@ -1,13 +1,11 @@
 <?php
-
 class Routing {
 
-	public function setRouting($router = "home") {
-		if (file_exists("view/".$router."/index.php") && file_exists("controller/".$router."/index.php") ) {
+	public function setRouting($router) {
+		if (file_exists("view/".$router."/index.php") && file_exists("controller/".$router."/index.php"))
 			return $router;
-		} else {
+		else
 			return "../php/errors/404/";
-		}
 	}
 
 	public function setPage($set, $page) {
@@ -55,5 +53,4 @@ class Routing {
 		}
 	}
 }
-
 ?>

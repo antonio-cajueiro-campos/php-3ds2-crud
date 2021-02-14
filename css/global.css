@@ -21,12 +21,8 @@ html, body {
 
 }
 
-.navbar.navbar-expand-lg.navbar-light.bg-light {
-	background-color: rgb(242, 252, 255);
-}
-
-.header {
-	background-color: rgb(242, 252, 255);
+.header, .navbar.navbar-expand-lg.navbar-light.bg-light {
+	background-color: rgb(242, 252, 255)!important;
 }
 
 .container.c-content {
@@ -38,7 +34,7 @@ html, body {
 
 .content {
 	min-height: calc(100vh - 56px - 200px);
-	padding: 15px;
+	padding: 15px 15px 70px 15px;
 	margin-bottom: 200px;
 }
 
@@ -47,6 +43,10 @@ html, body {
 	font-size: 35px;
 	text-align: center;
 	padding: 30px 0 50px 0;
+}
+
+a {
+	color: #000!important;
 }
 
 .container.c-footer {
@@ -64,7 +64,7 @@ html, body {
 .footer-info {
 	position: absolute;
 	width: fit-content;
-	bottom: 0;
+	bottom: 50px;
 }
 
 .footer-info > p {

@@ -6,8 +6,6 @@ $profissional = new Profissional($mysqli);
 
 $categories = $profissional->getAllCategories();
 
-
-
 $printList = "";
 $printCategories = "<option selected value=''>Escolha a sua categoria</option>";
 
@@ -20,9 +18,6 @@ foreach ($categories as $category) {
 	$printCategories .= $templateSelect;
 }
 
-// $params           = array_merge($_GET, ['p' => $router]);
-// echo $new_query_string = http_build_query( $params );
-
 if (isset($_GET['category'])) {
 	$categoryId = $_GET['category'];
 	$categoryName = $profissional->getCategorie($categoryId, 'name');
@@ -32,14 +27,17 @@ if (isset($_GET['category'])) {
 
 	
 	foreach ($profs as $prof) {
+		$profId = $prof['cd_cpf'];
 		$profName = $prof['nm_profissional'];
 		$profSalario = $prof['vl_salario'];
 		
 		$templateList = "
-			<li class='list-group-item'>
+			<li class='list-group-item proItem'>
 				<div class='row'>
 					<div class='col-6'>$profName</div>
-					<div class='col-6'>$profSalario</div>
+					<div class='col-4'>$profSalario</div>
+					<div class='col-1 icon-box'><a href='?p=atualizar&id=$profId'><i class='fa fa-cog icon cog' aria-hidden='true'></i></a></div>
+					<div class='col-1 icon-box'><i onclick=removeProfissional($profId) class='fa fa-times icon times'></i></div>
 				</div>
 			</li>";
 	

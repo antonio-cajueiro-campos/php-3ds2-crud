@@ -4,31 +4,58 @@ include_once 'class.system.php';
 class Profissional extends System {
 
 
-	public function addRegistro($nome, $cpf, $salario, $categoria) {
+	public function addProfissional($nome, $cpf, $salario, $categoria) {
 		$db = $this->db;
 
-		$sql = "SELECT vl_salario FROM tb_usuario WHERE cd_categoria = '$categoria'";
+		$sql = "INSERT INTO tb_usuario (cd_cpf, nm_profissional, cd_categoria, vl_salario) VALUES ('$cpf', '$nome', '$categoria', '$salario')";
+
+		if ($db->query($sql)) {
+			$res = $this->atualizarMediaCategoria($categoria);
+			if ($res) return true;
+			return false;
+		}
+		return false;		
+	}
+
+	public function removeProfissional($cpf, $categoria) {
+		$db = $this->db;
+
+		$sql = "DELETE FROM tb_usuario WHERE cd_cpf = '$cpf'";
+
+		if ($db->query($sql)) {
+			$res = $this->atualizarMediaCategoria($categoria);
+			if ($res) return true;
+			return false;
+		}
+		return false;
+	}
+
+	public function editarProfissional($nome, $cpf, $salario, $categoria) {
+		$db = $this->db;
+
+
+		$res = $this->atualizarMediaCategoria($categoria);
+		if ($res) return true;
+		return false;
+	}
+
+	public function consultarProfissional($cpf, $type) {
+		$db = $this->db;
+
+		switch ($type) {
+			case 'categoria': $value = "cd_categoria"; break;
+			case 'nome': $value = "nm_profissional"; break;
+			case 'salario': $value = "vl_salario"; break;
+		}
+		$sql = "SELECT $value FROM tb_usuario WHERE cd_cpf = '$cpf'";
+
 		$query = $db->query($sql);
-		$query->num_rows;
 
-		
-		$res = $this->atualizarMediaCategoria($categoria);
-		if ($res) return true;
-		return false;
-	}
+		$row = $query->fetch_array(MYSQLI_ASSOC);
 
-	public function editarRegistro($nome, $cpf, $salario, $categoria) {
-		$db = $this->db;
+		$result = $row[$value];
 
-
-		$res = $this->atualizarMediaCategoria($categoria);
-		if ($res) return true;
-		return false;
-	}
-
-	public function consultarRegistro($cpf) {
-		$db = $this->db;
-
+		return $result;
 	}
 
 	public function getAllCategories() {
@@ -58,7 +85,6 @@ class Profissional extends System {
 		$result = $row[$value];
 
 		return $result;
-
 	}
 
 	public function getAllProInCategories($categoryId) {
@@ -71,15 +97,5 @@ class Profissional extends System {
 			return false;
 		}
 	}
-
-	public function apagarRegistro($cpf, $categoria) {
-		$db = $this->db;
-
-
-		$res = $this->atualizarMediaCategoria($categoria);
-		if ($res) return true;
-		return false;
-	}	
-
 }
 ?>

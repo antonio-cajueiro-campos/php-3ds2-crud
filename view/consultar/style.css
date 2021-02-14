@@ -1,0 +1,36 @@
+.category-header {
+	margin: 20px 0;
+	font-weight: bold;
+}
+
+.proItem:hover {
+	cursor: pointer;
+	background: rgb(241, 241, 241);
+}
+
+.warning {
+	margin: 20px 0 0 0;
+}
+
+.icon-box {
+	position: relative;
+}
+
+.icon-box > a > i:hover {
+	color: rgb(131, 131, 131);
+}
+
+.icon {
+	position: absolute;
+	top: -10px;
+	font-size: 45px;
+	margin: 0;
+}
+
+.icon-box > i {
+	color: rgb(129, 0, 0);
+}
+
+.icon-box > i:hover {
+	color: red;
+}

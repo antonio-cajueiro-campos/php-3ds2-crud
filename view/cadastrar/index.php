@@ -1,29 +1,26 @@
 <h1 class="title">Cadastrar Profissional</h1>
-<form>
+<form method="POST">
   <div class="form-row">
     <div class="col-md-12 mb-3">
-      <label for="validationServer01">First name</label>
-      <input type="text" class="form-control" id="validationServer01" value="Mark" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
+      <label for="validationServer01">Nome do profissional</label>
+      <input type="text" class="form-control" name="nome" required>
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
-      <label for="validationServer03">CPF</label>
-      <input type="text" class="form-control" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+      <label>CPF</label>
+      <input type="text" class="form-control" name="cpf" maxlength="11" required>
     </div>
     <div class="col-md-3 mb-3">
-      <label for="validationServer05">Salário</label>
-      <input type="number" class="form-control" id="validationServer05" aria-describedby="validationServer05Feedback" required>
+      <label>Salário</label>
+      <input type="text" class="form-control" name="salario" required>
     </div>
     <div class="col-md-3 mb-3">
-      <label for="validationServer04">Categoria</label>
-      <select class="custom-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+      <label>Categoria</label>
+      <select class="custom-select" name="categoria" required>
         <?= $printCategories; ?>
       </select>
     </div>    
   </div>
-  <button class="btn btn-primary" type="submit">Cadastrar</button>
+  <button class="btn btn-primary" name="cadastrar" type="submit">Cadastrar</button>
 </form>

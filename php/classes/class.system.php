@@ -6,7 +6,7 @@ class System {
 		$this->db = $db;
 	}
 
-	protected function atualizarMediaSalarial($categoria) {
+	protected function atualizarMediaCategoria($categoria) {
 		$db = $this->db;
 		$sql = "SELECT vl_salario FROM tb_usuario WHERE cd_categoria = '$categoria'";
 
